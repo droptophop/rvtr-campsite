@@ -1,14 +1,15 @@
 # stage - base
-FROM node:lts as base
+FROM node:14.9 as base
 WORKDIR /workspace
 
 COPY . .
 
 RUN npm clean-install
-RUN npm run build --prod
+RUN npm run lint
+RUN npm run build
 
 # stage - final
-FROM nginx:mainline-alpine
+FROM nginx:1.19-alpine
 LABEL maintainer="https://github.com/fredbelotte"
 
 COPY --from=base /workspace/nginx.conf /etc/nginx/nginx.conf
