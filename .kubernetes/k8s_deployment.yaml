@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: campsite
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: campsite
+  strategy:
+    rollingUpdate:
+      maxSurge: 5
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: campsite
+    spec:
+      containers:
+        - image: rvtr/campsite:main-angular
+          imagePullPolicy: Always
+          name: angular
+          ports:
+            - containerPort: 80
+              name: angular-http
