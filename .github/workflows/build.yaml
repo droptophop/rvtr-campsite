@@ -1,43 +1,23 @@
 jobs:
-  build_aspnet:
+  build_angular:
     defaults:
       run:
-        working-directory: aspnet
-    name: build_aspnet
-    runs-on: ubuntu-18.04
+        working-directory: angular
+    name: build_angular
+    runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
-        uses: actions/checkout@v2.2.0
-      - name: dotnet_restore
-        run: dotnet restore
-      - name: dotnet_build
-        run: dotnet build --no-restore
-
-  build_jekyll:
-    defaults:
-      run:
-        working-directory: jekyll
-    name: build_jekyll
-    runs-on: ubuntu-18.04
-    steps:
-      - name: actions_checkout
-        uses: actions/checkout@v2.2.0
-      - name: ruby_install
-        uses: ruby/setup-ruby@v1.36.0
-        with:
-          ruby-version: 2.6
+        uses: actions/checkout@v2.3.2
       - name: npm_install
         run: npm clean-install
-      - name: bundle_install
-        run: bundle install
+      - name: npm_lint
+        run: npm run lint
       - name: npm_build
         run: npm run build
-      - name: jekyll_build
-        run: bundle exec jekyll build --config jekyll.config.yaml
 
 name: build
 
 on:
   pull_request:
     branches:
-      - master
+      - main
