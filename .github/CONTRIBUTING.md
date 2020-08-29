@@ -97,7 +97,7 @@ git push origin <branch>
 
 ```zsh
 git fetch upstream
-git rebase upstream/master
+git rebase upstream/main
 git push --force-with-lease origin <branch>
 ```
 
@@ -109,5 +109,5 @@ git push --force-with-lease origin <branch>
 Thank you for contibuting to this project.
 
 [code_of_conduct]: https://github.com/rvtr/rvtr-campsite/blob/main/.github/CODE_OF_CONDUCT.md 'code of conduct'
-[nodejs]: https://github.com/nodejs/node/blob/master/doc/guides/contributing/pull-requests.md 'nodejs pull request process'
+[nodejs]: https://github.com/nodejs/node/blob/main/doc/guides/contributing/pull-requests.md 'nodejs pull request process'
 [project]: https://github.com/rvtr/rvtr-campsite 'campsite'
