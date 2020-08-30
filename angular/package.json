@@ -1,5 +1,6 @@
 {
-  "name": "campsite",
+  "name": "@rvtr/campsite",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.14",
     "@angular/common": "~10.0.14",
