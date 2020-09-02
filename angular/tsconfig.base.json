@@ -18,9 +18,7 @@
     "noImplicitReturns": true,
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@models/*": ["src/app/data/models/*"],
-      "@modules/*": ["src/app/modules/*"],
-      "@services/*": ["src/app/data/services/*"]
+      "@shared/*": ["src/app/shared/*"]
     },
     "sourceMap": true,
     "strict": true,
