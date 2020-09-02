@@ -1,36 +1,39 @@
 // @ts-check
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter, StacktraceOption } = require('jasmine-spec-reporter');
+process.env.CHROMIUM_BIN = require('puppeteer').executablePath();
 
 /**
  * @type { import("protractor").Config }
  */
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: [
-    './src/**/*.e2e-spec.ts'
-  ],
+  baseUrl: 'http://localhost:4200/',
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--disable-gpu', '--headless'],
+      binary: process.env.CHROMIUM_BIN,
+    },
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
-    showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    showColors: true,
+    print() {},
   },
+  specs: ['./src/**/*.e2e-spec.ts'],
   onPrepare() {
     require('ts-node').register({
-      project: require('path').join(__dirname, './tsconfig.json')
+      project: require('path').join(__dirname, './tsconfig.json'),
     });
-    jasmine.getEnv().addReporter(new SpecReporter({
-      spec: {
-        displayStacktrace: StacktraceOption.PRETTY
-      }
-    }));
-  }
+    jasmine.getEnv().addReporter(
+      new SpecReporter({
+        spec: {
+          displayStacktrace: StacktraceOption.PRETTY,
+        },
+      })
+    );
+  },
 };

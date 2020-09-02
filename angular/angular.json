@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "campsite"
+    }
+  },
+  "defaultProject": "campsite",
+  "cli": {
+    "analytics": false
+  }
 }

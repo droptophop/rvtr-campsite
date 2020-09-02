@@ -1,19 +1,49 @@
+env:
+  CACHE_KEY_PREFIX: angular
+  WORKING_DIRECTORY: angular
+
 jobs:
   build_angular:
     defaults:
       run:
-        working-directory: angular
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     name: build_angular
     runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
         uses: actions/checkout@v2.3.2
+      - name: actions_cache
+        uses: actions/cache@v2.1.1
+        with:
+          key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm
       - name: npm_install
         run: npm clean-install
       - name: npm_lint
         run: npm run lint
       - name: npm_build
         run: npm run build
+
+  test_angular:
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+    name: test_angular
+    runs-on: ubuntu-20.04
+    steps:
+      - name: actions_checkout
+        uses: actions/checkout@v2.3.2
+      - name: actions_cache
+        uses: actions/cache@v2.1.1
+        with:
+          key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm
+      - name: npm_install
+        run: npm clean-install
+      - name: npm_test
+        run: npm run test
+      - name: npm_e2e
+        run: npm run e2e
 
 name: release
 

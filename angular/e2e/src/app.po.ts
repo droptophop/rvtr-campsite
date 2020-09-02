@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getTitleText(): Promise<string> {
-    return element(by.css('uix-root .content span')).getText() as Promise<string>;
+    return element(by.css('uix-root')).getText() as Promise<string>;
   }
 }
